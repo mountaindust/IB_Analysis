@@ -23,7 +23,8 @@ import matplotlib.pyplot as plt
 path_to_data = r"IBFE_data/output.ex2"
 ### Default directory in which to save resulting plots ###
 out_directory = r"."
-###
+### Default variables to analyze
+var_list = ["X_0","X_1"]
 
 # Arparse setup, to take options from the command line
 parser = argparse.ArgumentParser(description="Analyze IBFE Lagrangian data.")
@@ -31,6 +32,9 @@ parser.add_argument('-f', '--filename', type=str, default=path_to_data,
                     help="location of data to load")
 parser.add_argument('-o', '--outdir', type=str, default=out_directory,
                     help="dir for output")
+parser.add_argument('--vars', type=str, default=var_list,
+                    help="variables in the dataset to analyze.\n"+
+                    "Specify as a comma separated list, no spaces!")
 
 
 
@@ -81,7 +85,7 @@ def apply_annotations(var=None):
 
 
 def main(path_to_data=path_to_data, out_directory=out_directory,
-         var_list=["X_0","X_1"]):
+         var_list=var_list):
     '''Run the analysis'''
 
     # Check for proper paths
@@ -171,6 +175,6 @@ def main(path_to_data=path_to_data, out_directory=out_directory,
     ###
 
 if __name__ == '__main__':
-    Launch()
     args = parser.parse_args()
-    main(args.filename, args.outdir)
+    Launch()
+    main(args.filename, args.outdir, args.vars.split(','))
