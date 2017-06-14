@@ -10,7 +10,7 @@ import sys
 import os
 import argparse
 ############# Edit with proper VisIt path!!! #############
-sys.path.append("C:\Program Files\LLNL\VisIt 2.11.0\lib\site-packages")
+sys.path.append(r"C:\Program Files\LLNL\VisIt 2.11.0\lib\site-packages")
 #############
 from visit import *
 # visit_utils has several nice helper functions, among them "query" which just
@@ -300,6 +300,8 @@ def main(path_to_data=path_to_data, out_directory=out_directory,
     SetSaveWindowAttributes(SaveWindowAtts)
     SaveWindow()
     ###
+
+    CloseDatabase("localhost:"+path_to_data)
 
 if __name__ == '__main__':
     args = parser.parse_args()
