@@ -25,6 +25,8 @@ path_to_data = r"IBFE_data/output.ex2"
 out_directory = r"."
 ### Default variables to analyze
 var_list = ["X_0","X_1"]
+### Query Over Time type (e.g., "Max", "Min", or "Average Value")
+q_type = "Average Value"
 
 # Arparse setup, to take options from the command line
 parser = argparse.ArgumentParser(description="Analyze IBFE Lagrangian data.")
@@ -35,12 +37,16 @@ parser.add_argument('-o', '--outdir', type=str, default=out_directory,
 parser.add_argument('--vars', type=str, default=','.join(var_list),
                     help="variables in the dataset to analyze.\n"+
                     "Specify as a comma separated list, no spaces!")
+parser.add_argument('--type', type=str, default=q_type,
+                    help='type of Query Over Time to run,\n'+
+                    'e.g. Max, Min, or "Average Value". If the type\n'+
+                    'has a space in it, be sure to enclose in quotations!')
 
 
 
 def define_expressions(var_list):
-    ''' Define any expressions (new variables, not in the dataset) that you want
-    plots of here.
+    ''' Define any expressions (new variables, not already in the dataset) 
+    that you want plots of here.
     '''
 
     ### Define additional variables to plot/analyze as Expressions ###
@@ -195,7 +201,7 @@ def apply_annotations():
 
 
 def main(path_to_data=path_to_data, out_directory=out_directory,
-         var_list=var_list):
+         var_list=var_list,q_type=q_type):
     '''Run the analysis'''
 
     # Check for proper paths
@@ -253,7 +259,7 @@ def main(path_to_data=path_to_data, out_directory=out_directory,
 
         SetActivePlots(n) # Highlight the current quantity
         ### Create the query, e.g. "Max", "Min", or "Average Value" ###
-        QueryOverTime("Max", end_time=320, start_time=0, stride=1)
+        QueryOverTime(q_type, end_time=320, start_time=0, stride=1)
 
         ### Change how the output plot looks
         SetActiveWindow(2)
@@ -298,4 +304,4 @@ def main(path_to_data=path_to_data, out_directory=out_directory,
 if __name__ == '__main__':
     args = parser.parse_args()
     Launch()
-    main(args.filename, args.outdir, args.vars.split(','))
+    main(args.filename, args.outdir, args.vars.split(','), args.type)
