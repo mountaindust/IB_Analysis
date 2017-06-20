@@ -2,8 +2,8 @@
 
 Author: Christopher Strickland   
 Email: cstric12@utk.edu   
-Website: http://www.christopherstrickland.info
-GitHub: http://github.com/mountaindust
+Website: http://www.christopherstrickland.info   
+GitHub: http://github.com/mountaindust   
 
 ## Automating VisIt for time-series plot creation
 
