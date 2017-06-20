@@ -16,7 +16,7 @@ reading VTK files in Python, see data_IO.
 
 ## data_IO
 This was pulled from my Planktos repo and provides examples of functions for
-reading VTK data from a variety of sources using the vtk Python library.
+reading VTK data from a variety of sources using the vtk Python library. You can play with some of these functions using the data provided in the VTK\_test\_data folder. The IBAMR data sets can be read in using read\_vtk\_Rectilinear\_Grid\_Vector and the mesh data can be read in using read\_vtk\_Unstructured\_Grid\_Points.
 
 ## read\_IBAMR3d\_py27
 This will read in samrai 3D data using VisIt, resample it, and convert it to VTK. Must be run under Python 2.7 with VisIt installed. You must edit this file with the path to your VisIt installation's lib/site-packages directory before running. Help is available by running this script from the terminal with the -h option.
