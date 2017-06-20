@@ -1,0 +1,5 @@
+# IBFE data
+IBFE_data/
+
+# Resulting files
+*.vtk
